@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Breast cancer Prediction (Powered by IBM AutoAI)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+
+<body style="background-color: #0000FF">
+
+  <center>
+    <div style="app-header">
+      <h2>Breast cancer Prediction</h2>
+      <p>Powered by IBM AutoAI</p>
+      <p>Are you susceptible to breast cancer?</p>
+    </div>
+  </center>
+
+  <form class="text-center" style="border-style: solid; color: #ffffff; margin-bottom:10px; margin-top:10px" method="POST" action="/predict">
+    <table width="100%">
+      <tbody>
+          <tr>
+            <td align="center">
+              <div class="form-field" style="margin-top:10px;">{{ form.age.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field" style="margin-top:10px;">{{ form.age }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+                <div class="form-field">{{ form.bmi.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field">{{ form.bmi }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.glucose.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field">{{ form.glucose }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.insulin.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field ">{{ form.insulin }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.homa.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field ">{{ form.homa }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.leptin.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field ">{{ form.leptin }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.adiponectin.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field ">{{ form.adiponectin }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.resistin.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field ">{{ form.resistin }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="form-field ">{{ form.mcp.label }}</div>
+            </td>
+            <td align="left">
+              <div class="form-field ">{{ form.mcp }}</div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <input id="submit" style="color:black; margin-bottom: 10px;" name="submit" type="submit" onclick="startSpinner()" value="Predict">
+    
+    <br>
+  </form>
+
+  <div class="d-flex justify-content-center">
+    <div id="loader" style="color:black; display: none;" class="spinner-border"></div>
+  </div>
+  <div class="output-container">
+    <center>
+      <div id="output" style="color:white">
+        <h5 id="a">Predicted Outcome: </h5>
+        <h3 id="b">{{ form.outcome }}</h3>
+      </div>
+    </center>
+  </div>
+</body>
+</html>
